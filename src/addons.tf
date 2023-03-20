@@ -41,6 +41,11 @@ data "template_file" "flux" {
 
 
 
+
+provider "flux" {}
+
+provider "kubectl" {}
+
 resource "kubernetes_namespace" "flux_system" {
   metadata {
     name = "flux-system"
