@@ -20,28 +20,6 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.google_container_cluster.current.master_auth.0.cluster_ca_certificate)
 }
 
-resource "kubernetes_namespace" "flux_hr_namespace" {
-  metadata {
-    name = "flux-hr"
-  }
-}
-
-data "template_file" "flux" {
-  template = file("${path.module}/templates/flux.yaml")
-  vars = {
-    concurrency  = "16"
-    loglevel     = "info"
-    qps          = "300"
-    burst        = "800"
-    helm_version = "v0.17.1"
-  }
-}
-
-
-
-
-
-
 provider "flux" {}
 
 provider "kubectl" {
