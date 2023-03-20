@@ -8,6 +8,6 @@ include {
 }
 
 inputs = {
-  environment   = "dev"
   project_id    = "sathsara-dev"
+  region        = "us-central1"
 }
