@@ -25,3 +25,14 @@ resource "kubernetes_namespace" "flux_hr_namespace" {
     name = "flux-hr"
   }
 }
+
+data "template_file" "flux_hr" {
+  template = file("${path.module}/templates/flux.yaml")
+  vars = {
+    concurrency  = "16"
+    loglevel     = "info"
+    qps          = "300"
+    burst        = "800"
+    helm_version = "v0.17.1"
+  }
+}
