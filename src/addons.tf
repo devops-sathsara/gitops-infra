@@ -16,6 +16,6 @@ provider "kubernetes" {
 
 resource "kubernetes_namespace" "flux_hr_namespace" {
   metadata {
-    name = "flux_hr"
+    name = "flux-hr"
   }
 }
