@@ -8,8 +8,14 @@
 
 data "google_client_config" "current" {}
 
+data "google_container_cluster" "current" {
+  name     = "${var.project_id}-gke"
+  location = var.region
+  project  = var.project_id
+}
+
 provider "kubernetes" {
-  host                   = google_container_cluster.primary.endpoint
+  host                   = "https://${data.google_container_cluster.current.endpoint}"
   token                  = data.google_client_config.current.access_token
   cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
 }
