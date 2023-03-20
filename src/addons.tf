@@ -17,7 +17,7 @@ data "google_container_cluster" "current" {
 provider "kubernetes" {
   host                   = "https://${data.google_container_cluster.current.endpoint}"
   token                  = data.google_client_config.current.access_token
-  cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
+  cluster_ca_certificate = base64decode(data.google_container_cluster.current.master_auth.0.cluster_ca_certificate)
 }
 
 resource "kubernetes_namespace" "flux_hr_namespace" {
