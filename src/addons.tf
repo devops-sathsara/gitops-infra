@@ -44,7 +44,12 @@ data "template_file" "flux" {
 
 provider "flux" {}
 
-provider "kubectl" {}
+provider "kubectl" {
+  host                   = "https://${data.google_container_cluster.current.endpoint}"
+  token                  = data.google_client_config.current.access_token
+  cluster_ca_certificate = base64decode(data.google_container_cluster.current.master_auth.0.cluster_ca_certificate)
+  load_config_file       = false
+}
 
 resource "kubernetes_namespace" "flux_system" {
   metadata {
@@ -66,7 +71,7 @@ data "kubectl_file_documents" "install" {
   content = data.flux_install.main.content
 }
 
-resource "kubectl_manifest" "test" {
+resource "kubectl_manifest" "install" {
     for_each  = data.kubectl_file_documents.install.manifests
     yaml_body = each.value
 }
