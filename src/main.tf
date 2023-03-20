@@ -10,7 +10,7 @@ provider "kubernetes" {
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster"
   project_id                 = var.project_id
-  name                       = "gke-test-1"
+  name                       = "gitops-gke-cluster-1"
   region                     = "us-central1"
   zones                      = ["us-central1-a", "us-central1-b", "us-central1-f"]
   network                    = "vpc-01"
