@@ -26,7 +26,7 @@ resource "kubernetes_namespace" "flux_hr_namespace" {
   }
 }
 
-data "template_file" "flux_hr" {
+data "template_file" "flux" {
   template = file("${path.module}/templates/flux.yaml")
   vars = {
     concurrency  = "16"
@@ -35,4 +35,42 @@ data "template_file" "flux_hr" {
     burst        = "800"
     helm_version = "v0.17.1"
   }
+}
+
+
+
+
+
+resource "kubernetes_namespace" "flux_system" {
+  metadata {
+    name = "flux-system"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      metadata[0].labels,
+    ]
+  }
+}
+
+data "flux_install" "main" {
+  target_path = var.target_path
+}
+
+data "kubectl_file_documents" "install" {
+  content = data.flux_install.main.content
+}
+
+locals {
+  install = [for v in data.kubectl_file_documents.install.documents : {
+    data : yamldecode(v)
+    content : v
+    }
+  ]
+}
+
+resource "kubectl_manifest" "install" {
+  for_each   = { for v in local.install : lower(join("/", compact([v.data.apiVersion, v.data.kind, lookup(v.data.metadata, "namespace", ""), v.data.metadata.name]))) => v.content }
+  depends_on = [kubernetes_namespace.flux_system]
+  yaml_body  = each.value
 }
