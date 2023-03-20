@@ -3,7 +3,7 @@ remote_state {
 
   config = {
     bucket      = "gitops-tf-state-bucket-${local.env}"
-    prefix      = "${path_relative_to_include()}/tfstate"
+    prefix      = "tfstate"
     project     = "citric-shine-378115"
     location    = "us-east4"
   }
