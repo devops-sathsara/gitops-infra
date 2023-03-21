@@ -22,18 +22,6 @@ data "kubectl_file_documents" "install" {
   content = data.flux_install.main.content
 }
 
-resource "kubernetes_namespace" "flux_system" {
-  metadata {
-    name = "flux-system"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      metadata[0].labels,
-    ]
-  }
-}
-
 resource "kubectl_manifest" "install" {
   for_each  = data.kubectl_file_documents.install.manifests
   yaml_body = each.value
