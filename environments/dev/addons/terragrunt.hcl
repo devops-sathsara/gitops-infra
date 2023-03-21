@@ -14,13 +14,15 @@ locals {
 dependency "cluster" {
   config_path = "../cluster"
   mock_outputs = {
-    cluster_ca_certificate = "dummy_cluster_ca_certificate"
+    kubernetes_cluster_host = "dummy_kubernetes_cluster_host"
+    cluster_ca_certificate  = "dummy_cluster_ca_certificate"
   }
 }
  
 inputs = merge(
   local.common_vars.inputs,
   {
+    kubernetes_cluster_host  = dependency.cluster.outputs.kubernetes_cluster_host
     cluster_ca_certificate   = dependency.cluster.outputs.cluster_ca_certificate
   }
 )
