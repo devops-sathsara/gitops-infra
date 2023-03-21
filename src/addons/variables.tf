@@ -8,6 +8,11 @@ variable "region" {
   type        = string
 }
 
+variable "kubernetes_cluster_host" {
+  value       = google_container_cluster.primary.endpoint
+  type        = string
+}
+
 variable "cluster_ca_certificate" {
   description = "GKE Cluster certificate"
   type        = string
