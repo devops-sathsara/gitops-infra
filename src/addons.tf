@@ -6,12 +6,16 @@
 # # https://learn.hashicorp.com/terraform/kubernetes/provision-gke-cluster#optional-configure-terraform-kubernetes-provider
 # # To learn how to schedule deployments and services using the provider, go here: https://learn.hashicorp.com/tutorials/terraform/kubernetes-provider.
 
-data "google_client_config" "current" {}
+data "google_client_config" "current" {
+  depends_on = [google_container_cluster.primary]
+}
 
 data "google_container_cluster" "current" {
   name     = "${var.project_id}-gke"
   location = var.region
   project  = var.project_id
+
+  depends_on = [google_container_cluster.primary]
 }
 
 data "flux_install" "main" {
