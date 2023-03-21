@@ -12,3 +12,9 @@ variable "cluster_ca_certificate" {
   description = "GKE Cluster certificate"
   type        = string
 }
+
+variable "target_path" {
+  type        = string
+  default     = "staging-cluster"
+  description = "flux sync target path"
+}

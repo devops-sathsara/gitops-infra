@@ -22,9 +22,3 @@ variable "gke_num_nodes" {
   default     = 2
   description = "number of gke nodes"
 }
-
-variable "target_path" {
-  type        = string
-  default     = "staging-cluster"
-  description = "flux sync target path"
-}
