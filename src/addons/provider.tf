@@ -38,13 +38,13 @@ provider "google" {
 provider "kubernetes" {
   host                   = "https://${data.google_container_cluster.current.endpoint}"
   token                  = data.google_client_config.current.access_token
-  cluster_ca_certificate = var.cluster_ca_certificate
+  cluster_ca_certificate = base64encode(var.cluster_ca_certificate) 
 }
 
 provider "kubectl" {
   host                   = "https://${data.google_container_cluster.current.endpoint}"
   token                  = data.google_client_config.current.access_token
-  cluster_ca_certificate = var.cluster_ca_certificate
+  cluster_ca_certificate = base64encode(var.cluster_ca_certificate) 
   load_config_file       = false
 }
 
