@@ -18,10 +18,15 @@ dependency "cluster" {
   }
 }
  
-inputs = merge(
-  local.common_vars.inputs,
-  {
-    cluster_ca_certificate   = dependency.cluster.outputs.cluster_ca_certificate
-  }
-)
+#inputs = merge(
+#  local.common_vars.inputs,
+#  {
+#    cluster_ca_certificate   = dependency.cluster.outputs.cluster_ca_certificate
+#  }
+#)
 
+inputs (
+  project_id              = "sathsara-dev"
+  region                  = "us-central1"
+  cluster_ca_certificate  = dependency.cluster.outputs.cluster_ca_certificate
+)
