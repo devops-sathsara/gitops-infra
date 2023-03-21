@@ -14,14 +14,14 @@ locals {
 dependency "cluster" {
   config_path = "../cluster"
   mock_outputs = {
-    database_id = "temporary-dummy-id"
+    cluster_ca_certificate = "dummy_cluster_ca_certificate"
   }
 }
  
 inputs = merge(
   local.common_vars.inputs,
   {
-    database_id   = dependency.cluster.outputs.cluster_ca_certificate
+    cluster_ca_certificate   = dependency.cluster.outputs.cluster_ca_certificate
   }
 )
 
