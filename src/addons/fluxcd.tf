@@ -19,7 +19,8 @@ data "kubectl_file_documents" "flux_install" {
 }
 
 resource "kubectl_manifest" "flux_install" {
-  for_each  = data.kubectl_file_documents.flux_install.manifests
-  yaml_body = each.value
-  depends_on = [kubernetes_namespace.flux_system]
+  for_each              = data.kubectl_file_documents.flux_install.manifests
+  yaml_body             = each.value
+  override_namespace    = "flux-system"
+  depends_on            = [kubernetes_namespace.flux_system]
 }
