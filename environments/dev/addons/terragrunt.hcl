@@ -25,8 +25,8 @@ dependency "cluster" {
 #  }
 #)
 
-inputs (
+inputs = {
   project_id              = "sathsara-dev"
   region                  = "us-central1"
   cluster_ca_certificate  = dependency.cluster.outputs.cluster_ca_certificate
-)
+}
