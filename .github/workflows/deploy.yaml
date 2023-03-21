@@ -25,6 +25,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.4.2
+          terraform_wrapper: false  # due to https://github.com/gruntwork-io/terragrunt/issues/1202
 
       - name: Setup Terragrunt
         run: |
