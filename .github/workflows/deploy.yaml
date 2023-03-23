@@ -33,34 +33,14 @@ jobs:
           chmod +x terragrunt_linux_amd64
           sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
 
-      # - name: Terraform Format
-      #   run: |
-      #     cd src
-      #     terraform fmt -check
-
-      # - name: Terraform Init
-      #   run: |
-      #     cd src
-      #     terraform init
-
-      # - name: Terraform Validate
-      #   run: |
-      #     cd src
-      #     terraform validate
-
-      # - name: Terragrunt Plan
+      # - name: Terragrunt Apply
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       #   run: |
       #     cd environments
-      #     terragrunt run-all plan --terragrunt-non-interactive
+      #     terragrunt run-all apply --auto-approve --terragrunt-non-interactive
 
-      - name: Terragrunt Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          cd environments
-          terragrunt run-all apply --auto-approve --terragrunt-non-interactive
-
-      - name: Terragrunt Destroy
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          cd environments
-          terragrunt run-all destroy --auto-approve --terragrunt-non-interactive
+      # - name: Terragrunt Destroy
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: |
+      #     cd environments
+      #     terragrunt run-all destroy --auto-approve --terragrunt-non-interactive
