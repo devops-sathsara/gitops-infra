@@ -22,6 +22,7 @@ dependency "cluster" {
 inputs = merge(
   local.common_vars.inputs,
   {
+    env_project_id           = "sathsara-dev"
     kubernetes_cluster_host  = dependency.cluster.outputs.kubernetes_cluster_host
     cluster_ca_certificate   = dependency.cluster.outputs.cluster_ca_certificate
   }

@@ -16,5 +16,6 @@ inputs = merge(
   local.common_vars.inputs,
   {
     gke_num_nodes   = 1
+    env_project_id  = "sathsara-dev"
   }
 )
