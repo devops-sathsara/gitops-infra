@@ -1,5 +1,5 @@
 resource "google_service_account" "artifact_registry" {
-  account_id   = "artifact-registry-access-for-gke"
+  account_id   = "artifact-registry-gke-sa"
   display_name = "Artifact registry access from GKE cluster"
   project      = var.main_project_id
 }
