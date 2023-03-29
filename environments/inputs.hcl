@@ -1,4 +1,4 @@
 inputs = {
-  project_id    = "sathsara-dev"
-  region        = "us-central1"
+  env_project_id    = "sathsara-dev"
+  region            = "us-central1"
 }
