@@ -1,5 +1,10 @@
+variable "main_project_id" {
+  description = "GCP main project ID"
+  type        = string
+}
+
 variable "env_project_id" {
-  description = "GCP project ID"
+  description = "GCP environment project ID"
   type        = string
 }
 
