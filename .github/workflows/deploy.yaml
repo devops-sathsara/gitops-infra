@@ -39,8 +39,8 @@ jobs:
           cd environments
           terragrunt run-all apply --auto-approve --terragrunt-non-interactive
 
-      - name: Terragrunt Destroy
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          cd environments
-          terragrunt run-all destroy --auto-approve --terragrunt-non-interactive
+      #- name: Terragrunt Destroy
+      #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #  run: |
+      #    cd environments
+      #    terragrunt run-all destroy --auto-approve --terragrunt-non-interactive
