@@ -26,7 +26,7 @@ resource "helm_release" "flux2_sync" {
 
   set {
     name  = "gitRepository.spec.url"
-    value = "ssh://git@github.com/${var.github_org}/${var.github_repository}.git"
+    value = "https://github.com/${var.github_org}/${var.github_repository}.git"
   }
 
   set {
