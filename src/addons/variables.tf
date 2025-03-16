@@ -23,3 +23,15 @@ variable "target_path" {
   default     = "staging-cluster"
   description = "flux sync target path"
 }
+
+variable "github_org" {
+  type        = string
+  default     = "devops-sathsara"
+  description = "github org to use with flux"
+}
+
+variable "github_repository" {
+  type        = string
+  default     = "gitops-manifests"
+  description = "github repository to use with flux"
+}
