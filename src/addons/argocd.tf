@@ -12,9 +12,9 @@ resource "kubectl_manifest" "argocd_namespace" {
     override_namespace  = "argocd"
 }
 
-resource "kubectl_manifest" "argocd_install" {
-    count               = length(data.kubectl_file_documents.argocd_install.documents)
-    yaml_body           = element(data.kubectl_file_documents.argocd_install.documents, count.index)
-    override_namespace  = "argocd"
-    depends_on          = [kubectl_manifest.argocd_namespace]
-}
+# resource "kubectl_manifest" "argocd_install" {
+#     count               = length(data.kubectl_file_documents.argocd_install.documents)
+#     yaml_body           = element(data.kubectl_file_documents.argocd_install.documents, count.index)
+#     override_namespace  = "argocd"
+#     depends_on          = [kubectl_manifest.argocd_namespace]
+# }
