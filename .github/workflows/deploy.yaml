@@ -12,14 +12,23 @@ jobs:
   setup:
     name: Terraform CI/CD
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write          # Permission for workload identify
+      contents: read           # Permission for workload identify
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       
       - name: Authenticate gcloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+      
+      # - name: Authenticate gcloud
+      #   uses: google-github-actions/auth@v0
+      #   with:
+      #     credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
