@@ -1,3 +1,9 @@
+resource "kubernetes_namespace" "flux_system" {
+  metadata {
+    name = "flux-system"
+  }
+}
+
 resource "helm_release" "flux2" {
   repository = "https://fluxcd-community.github.io/helm-charts"
   chart      = "flux2"
