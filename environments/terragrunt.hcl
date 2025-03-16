@@ -9,7 +9,7 @@ remote_state {
   config = {
     bucket      = "gitops-tf-state-bucket-${local.env}"
     prefix      = "${path_relative_to_include()}/tfstate"
-    project     = "sath-test-terraform"
+    project     = "sath-test-dev"
     location    = "us-east4"
   }
 
