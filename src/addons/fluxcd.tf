@@ -1,14 +1,10 @@
-resource "helm_release" "fluxcd" {
-  name       = "fluxcd"
+resource "helm_release" "flux2" {
   repository = "https://fluxcd-community.github.io/helm-charts"
   chart      = "flux2"
-  namespace  = "flux-system"
-  version    = "2.12.0"
-  create_namespace = true
+  version    = "2.12.4"
 
-  values = [
-    <<EOF
-    installCRDs: true
-    EOF
-  ]
+  name      = "flux2"
+  namespace = "flux-system"
+
+  depends_on = [kubernetes_namespace.flux_system]
 }
