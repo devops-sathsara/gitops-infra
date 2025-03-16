@@ -51,7 +51,7 @@ provider "kubectl" {
 provider "helm" {
   kubernetes {
     host                   = "https://${var.kubernetes_cluster_host}"
-    token                  = data.google_client_config.default.access_token
+    token                  = data.google_client_config.current.access_token
     cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
   }
 }
