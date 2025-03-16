@@ -1,4 +1,4 @@
 inputs = {
-  env_project_id   = "citric-shine-378115"
+  env_project_id   = "sath-test-dev"
   region            = "us-central1"
 }
